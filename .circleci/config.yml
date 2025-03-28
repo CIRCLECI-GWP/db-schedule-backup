@@ -1,33 +1,33 @@
-version: 2.1
-orbs:
-  heroku: circleci/heroku@2.0.0
-jobs:
-  build:
-    executor: heroku/default
-    steps:
-      - checkout
-      - heroku/install
-      - heroku/deploy-via-git:
-          force: true
+# version: 2.1
+# orbs:
+#   heroku: circleci/heroku@2.0.0
+# jobs:
+#   build:
+#     executor: heroku/default
+#     steps:
+#       - checkout
+#       - heroku/install
+#       - heroku/deploy-via-git:
+#           force: true
 
-workflows:
-  deploy:
-    jobs: -build
-  # schedule_backup:
-  #   working_directory: ~/project
-  #   docker:
-  #     - image: cimg/node:17.4.0
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Install MongoDB Tools.
-  #         command: |
-  #           npm install
-  #           sudo apt-get update
-  #           sudo apt-get install -y mongodb
-  #     - run:
-  #         name: Run database back up
-  #         command: npm run backup
+# workflows:
+#   deploy:
+#     jobs: -build
+# schedule_backup:
+#   working_directory: ~/project
+#   docker:
+#     - image: cimg/node:17.4.0
+#   steps:
+#     - checkout
+#     - run:
+#         name: Install MongoDB Tools.
+#         command: |
+#           npm install
+#           sudo apt-get update
+#           sudo apt-get install -y mongodb
+#     - run:
+#         name: Run database back up
+#         command: npm run backup
 # parameters:
 #   run-schedule:
 #     type: boolean
@@ -42,3 +42,18 @@ workflows:
 #   when: << pipeline.parameters.run-schedule >>
 #   jobs:
 #     - schedule_backup
+version: 2.1
+orbs:
+  heroku: circleci/heroku@2.0.0
+jobs:
+  build:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git:
+          force: true
+workflows:
+  deploy:
+    jobs:
+      - build
