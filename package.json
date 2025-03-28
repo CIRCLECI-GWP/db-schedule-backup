@@ -1,0 +1,21 @@
+{
+  "name": "db-schedule-backup",
+  "version": "1.0.0",
+  "description": "Scheduling database backup",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "backup": "node backup.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oluyemi",
+  "license": "ISC",
+  "dependencies": {
+    "@azure/storage-blob": "^12.27.0",
+    "axios": "^1.8.4",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "lodash": "^4.17.21",
+    "mongoose": "^8.13.1"
+  }
+}
