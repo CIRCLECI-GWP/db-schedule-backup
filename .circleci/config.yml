@@ -64,8 +64,17 @@ jobs:
           name: Install MongoDB Tools.
           command: |
             npm install
+
+            # Import the MongoDB public GPG key
+            curl -fsSL https://pgp.mongodb.com/server-6.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-6.0.gpg --dearmor
+
+            # Create the MongoDB source list
+            echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-6.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+
             sudo apt-get update
-            sudo apt-get install -y mongodb
+
+            # Install MongoDB Tools (e.g., mongodump, mongorestore)
+            sudo apt-get install -y mongodb-database-tools
       - run:
           name: Run database back up
           command: npm run backup
